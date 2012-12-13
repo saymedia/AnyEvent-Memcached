@@ -133,10 +133,10 @@ sub new {
 	$self->{_bucker} = $args{bucker} || 'AnyEvent::Memcached::Buckets';
 
 	if ($args{hasher}) {
-            $self->{_hasher} = delete $args{hasher};
-        } else {
-            $self->{_hasher} = 'AnyEvent::Memcached::Hash';
-        }
+		$self->{_hasher} = delete $args{hasher};
+	} else {
+		$self->{_hasher} = 'AnyEvent::Memcached::Hash';
+	}
 	
 	
 
