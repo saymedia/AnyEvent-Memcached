@@ -131,7 +131,12 @@ sub new {
 		$self->{$_} = exists $args{$_} ? delete $args{$_} : 0;
 	}
 	$self->{_bucker} = $args{bucker} || 'AnyEvent::Memcached::Buckets';
-	$self->{_hasher} = $args{hasher} || 'AnyEvent::Memcached::Hash';
+
+	if ($args{hasher}) {
+		$self->{_hasher} = delete $args{hasher};
+	} else {
+		$self->{_hasher} = 'AnyEvent::Memcached::Hash';
+	}
 
 	$self->set_servers(delete $args{servers});
 	$self->{compress_enable} and !$HAVE_ZLIB and Carp::carp("Have no Compress::Zlib installed, but have compress_enable option");
