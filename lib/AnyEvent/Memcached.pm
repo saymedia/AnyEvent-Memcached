@@ -137,8 +137,6 @@ sub new {
 	} else {
 		$self->{_hasher} = 'AnyEvent::Memcached::Hash';
 	}
-	
-	
 
 	$self->set_servers(delete $args{servers});
 	$self->{compress_enable} and !$HAVE_ZLIB and Carp::carp("Have no Compress::Zlib installed, but have compress_enable option");
